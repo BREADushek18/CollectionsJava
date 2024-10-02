@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,10 @@ public class Main {
 
         switch (taskNumber) {
             case 1:
-                сollectionsTask1();
+                сollections1();
+                break;
+            case 2:
+                primesGenerator2();
                 break;
             default:
                 System.out.println("Неверный номер задания.");
@@ -21,7 +25,7 @@ public class Main {
         scanner.close();
     }
 
-    private static void сollectionsTask1() {
+    private static void сollections1() {
         int[] array = MyCollections.createRandomArray(10);
         System.out.println("Случайный массив: " + Arrays.toString(array));
         List<Integer> list = MyCollections.arrayToList(array);
@@ -43,5 +47,23 @@ public class Main {
         MyCollections.countOccurrences(arrayFromList);
     }
 
+    private static void primesGenerator2() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите количество простых чисел для генерации:");
+        int n = scanner.nextInt();
+        PrimesGenerator primesGenerator = new PrimesGenerator(n);
 
+        System.out.println("Простые числа в прямом порядке:");
+        for (int prime : primesGenerator) {
+            System.out.print(prime + " ");
+        }
+        System.out.println();
+
+        System.out.println("Простые числа в обратном порядке:");
+        Iterator<Integer> reverseIterator = primesGenerator.reverseIterator();
+        while (reverseIterator.hasNext()) {
+            System.out.print(reverseIterator.next() + " ");
+        }
+        System.out.println();
+    }
 }
