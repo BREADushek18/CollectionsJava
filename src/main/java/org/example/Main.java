@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +14,9 @@ public class Main {
                 break;
             case 2:
                 primesGenerator2();
+                break;
+            case 3:
+                human3();
                 break;
             default:
                 System.out.println("Неверный номер задания.");
@@ -65,5 +65,47 @@ public class Main {
             System.out.print(reverseIterator.next() + " ");
         }
         System.out.println();
+        scanner.close();
+    }
+
+    private static void human3() {
+        // Создаем список объектов Human
+        List<Human> humans = new ArrayList<>();
+        humans.add(new Human("Иван", "Сусанин", 25));
+        humans.add(new Human("Старуха", "Шапокляк", 30));
+        humans.add(new Human("Джесси", "Пинкман", 22));
+        humans.add(new Human("Крутой", "Перец", 28));
+
+        // a) Создаем HashSet и добавляем в него список
+        Set<Human> hashSet = new HashSet<>(humans);
+        System.out.println("HashSet:");
+        System.out.println(hashSet);
+
+        // b) Создаем LinkedHashSet и добавляем в него список
+        Set<Human> linkedHashSet = new LinkedHashSet<>(humans);
+        System.out.println("LinkedHashSet:");
+        System.out.println(linkedHashSet);
+
+        // c) Создаем TreeSet и добавляем в него список
+        Set<Human> treeSet = new TreeSet<>(humans);
+        System.out.println("TreeSet:");
+        System.out.println(treeSet);
+
+        // d) Создаем TreeSet с компаратором по фамилии
+        Set<Human> treeSetByLastName = new TreeSet<>(new HumanComparatorByLastName());
+        treeSetByLastName.addAll(humans);
+        System.out.println("TreeSet с компаратором по фамилии:");
+        System.out.println(treeSetByLastName);
+
+        // e) Создаем TreeSet с анонимным компаратором по возрасту
+        Set<Human> treeSetByAge = new TreeSet<>(new Comparator<Human>() {
+            @Override
+            public int compare(Human h1, Human h2) {
+                return Integer.compare(h1.getAge(), h2.getAge());
+            }
+        });
+        treeSetByAge.addAll(humans);
+        System.out.println("TreeSet с анонимным компаратором по возрасту:");
+        System.out.println(treeSetByAge);
     }
 }
