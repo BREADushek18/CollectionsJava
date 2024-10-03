@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.*;
+import static org.example.WordFrequencyCounter.countWordFrequencies;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +18,9 @@ public class Main {
                 break;
             case 3:
                 human3();
+                break;
+            case 4:
+                wordFrequency4();
                 break;
             default:
                 System.out.println("Неверный номер задания.");
@@ -119,5 +123,13 @@ public class Main {
      HashSet использует хеширование, LinkedHashSet использует связный список для сохранения порядка,
      а TreeSet использует красно-черное дерево для сортировки.
      */
+    private static void wordFrequency4() {
+        String text = "Hello world! Hello everyone. This is a test. Hello world!";
+        Map<String, Integer> frequencies = countWordFrequencies(text);
 
+        // Выводим результаты
+        for (Map.Entry<String, Integer> entry : frequencies.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
 }
