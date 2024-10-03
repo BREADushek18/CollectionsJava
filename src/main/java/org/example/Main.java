@@ -22,6 +22,9 @@ public class Main {
             case 4:
                 wordFrequency4();
                 break;
+            case 5:
+                mapSwitcher5();
+                break;
             default:
                 System.out.println("Неверный номер задания.");
         }
@@ -131,5 +134,17 @@ public class Main {
         for (Map.Entry<String, Integer> entry : frequencies.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
+    }
+
+    private static void mapSwitcher5() {
+        // Пример использования метода switchMap
+        Map<String, Integer> originalMap = new HashMap<>();
+        originalMap.put("One", 1);
+        originalMap.put("Two", 2);
+        originalMap.put("Three", 3);
+
+        System.out.println("Исходная карта: " + originalMap);
+        Map<Integer, String> switchedMap = MapSwitcher.switchMap(originalMap);
+        System.out.println("Карта поменяна местами: " + switchedMap);
     }
 }
